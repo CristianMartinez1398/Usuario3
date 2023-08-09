@@ -1,0 +1,11 @@
+{
+  "name": "usuario3",
+  "version": "1.0.0",
+  "description": "Aqui hacemos el backend para usuario",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tecnico Cristian Martinez",
+  "license": "ISC"
+}
