@@ -38,7 +38,6 @@ app.post('/api/usuario', (req, res) => {
 
 //Para poder actualizar un dato en la tabla de base de datos
 app.put('/api/usuario/:id', (req, res) => {
-    
     const parametro = [
         
         req.body.Nombre_Primero,  
@@ -68,5 +67,54 @@ app.put('/api/usuario/:id', (req, res) => {
 
 });
 
+//Para poder Eliminar un dato en la base de datos 
+app.delete('/api/usuario/:id', (req, res) => {
+    
+    const parametro = [
+        
+        req.params.id
+    ];
+
+    let sql = ` update tbl_usuario set
+                Nombre_Primero = $1, Apellido_Primero = $2, Edad = $3 
+                where id = $4 `;
+    
+    db.one(sql, parametro, e => e.id)
+    .then( data => {
+
+        const objeto_actualizado = {
+            id : data,
+            Apellido_Primero: req.body.Apellido_Primero,
+            Edad: req.body.Edad,
+            Genero: req.body.Genero
+        }
+        res.json(objeto_actualizado);
+    })
+    .catch((error) => {
+        res.status(500).json(error);
+    });
+
+});
+
+//es para ver los datos ingresados en la base de datos 
+app.get('/api/usuario/', (req, res) => {
+    
+   let sql = ` SELECT * FROM tbl_usuario; `;
+    
+    db.any(sql, e = e.id)
+    .then(row => {
+
+        if (row.length === 0) {
+            res.status(404).json( {mensaje : "Sin datos"} )
+        }else{
+            res.json(rows);
+        }
+        
+    })
+    .catch( (error) => {
+        res.status(500).json(error);
+    });
+
+});
 
 app.listen(3000);

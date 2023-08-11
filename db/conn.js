@@ -1,6 +1,6 @@
 const pgp = require('pg-promise')();
 
-const cn = 'postgresql://postgres:Septiembre13$@localhost:5432/usuario';
+const cn = 'postgresql://postgres:Septiembre13$@localhost:5432/tablaSql';
 
 const db = pgp(cn);
 

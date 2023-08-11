@@ -8,3 +8,4 @@ CREATE TABLE tbl_usuario (
     Genero VARCHAR(20)
 
 );
+
